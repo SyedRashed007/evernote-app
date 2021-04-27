@@ -37,10 +37,31 @@ class App extends React.Component {
     render(){
     return(
       <div className="app-container">
-        <SidebarComponent selectedNoteIndex={this.state.selectedNoteIndex} notes={this.state.notes}/>
-        <EditorComponent/>
+        <SidebarComponent 
+          selectedNoteIndex={this.state.selectedNoteIndex} 
+          notes={this.state.notes}
+          deleteNote={this.deleteNote}
+          selectNote={this.selectNote}
+          newNote={this.newNote}
+          />
+        {
+          this.state.selectedNote ?
+          <EditorComponent 
+            selectedNote={this.state.selectedNote}
+            selectedNoteIndex={this.state.selectedNoteIndex}
+            notes={this.state.notes}
+            noteUpdate={this.noteUpdate}
+          /> : null
+        }
+        {/* if no note is selectd then it will not render */}
       </div>
     )
+  }
+  selectNote = (note,index) => {
+    this.setState({selectedNoteIndex: index, selectedNote: note})
+  }
+  noteUpdate = (id, noteObj) => {
+    console.log(id, noteObj)
   }
 }
   export default App;

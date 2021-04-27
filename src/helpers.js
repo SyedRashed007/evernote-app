@@ -9,7 +9,7 @@ export default function debounce(a,b,c){
     return (clearTimeout(d),d=setTimeout(h,b),c&&!d&&(e=a.apply(f,g)),e)
   }
 }
-// Debounce here helps in real-time chat i.e it waits for 2s and then update 
+// Debounce here helps in real-time chat i.e it waits for 1.5s and then update 
 
 export function removeHTMLTags (str) {
   return str.replace(/<[^>]*>?/gm, '');

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactQuill from 'react-quill';
+import ReactQuill from 'react-quill'
 import debounce from '../helpers';
 // import BorderColorIcon from '@material-ui/icons/BorderColor';
 import { withStyles } from '@material-ui/core/styles';
@@ -14,22 +14,48 @@ class EditorComponent extends React.Component{
             id: ''
         };
     }
+
+    componentDidMount = () => {
+        this.setState({
+            text: this.props.selectedNote.body,
+            title: this.props.selectedNote.title,
+            id: this.props.selectedNote.id
+        })
+    }
+    // It is called when quill needs to be displayed when selected (life cycle hook)
+
+    componentDidUpdate = () => {
+        if(this.props.selectedNote.id !== this.state.id) {
+            this.setState({
+            text: this.props.selectedNote.body,
+            title: this.props.selectedNote.title,
+            id: this.props.selectedNote.id
+        })
+        }
+    }
+
     render(){
 
         const { classes } = this.props;
 
         return(
             <div className={classes.editorContainer}>
-                <ReactQuill value={this.state.text} onChange={this.updateBody}/>
+                <ReactQuill 
+                    value={this.state.text} 
+                    onChange={this.updateBody}>
+                </ReactQuill>
             </div>
         )
     }
     updateBody = async (val) => {
         await this.setState({text: val});
-        this.updateBody()
+        this.update()
     }
     update = debounce(()=>{
-        console.log("1.5secs")
+        this.props.noteUpdate(this.state.id, {
+            title: this.state.title,
+            body: this.state.text
+        })
     }, 1500);
 }
 

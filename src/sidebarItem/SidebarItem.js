@@ -32,6 +32,15 @@ class SidebarItemComponent extends React.Component{
         )
         // selectd highlights the cmpnt
     }
+    selectNote = (n,i) => {
+        this.props.selectNote(n, i);
+    }
+    deleteNote = (note) => {
+        if(
+            window.confirm(`Do you want to delete: ${note.title}`)){
+                this.props.deleteNote();
+            }
+    }
 }
 
 export default withStyles(styles)(SidebarItemComponent)
