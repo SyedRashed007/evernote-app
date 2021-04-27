@@ -17,33 +17,31 @@ class App extends React.Component {
     };
   }
 
-  render(){
+  // when App component is loaded successfully the following will be called
+  componentDidMount = () => {
+    firebase
+    .firestore()
+    .collection('notes')
+    .onSnapshot(serverUpdate => {
+      const notes = serverUpdate.docs.map(_doc => {
+        const data = _doc.data();
+        data['id'] = _doc.id;
+        return data;
+      });
+      console.log(notes)
+      this.setState({notes: notes})
+    });
+  }
+  // map in sidebar gives null bcz first its null(this.state) and afterwrds as shown abv notes is getting updated
+    
+    render(){
     return(
       <div className="app-container">
-        <SidebarComponent>
-        </SidebarComponent>
-        <EditorComponent>
-        </EditorComponent>
+        <SidebarComponent selectedNoteIndex={this.state.selectedNoteIndex} notes={this.state.notes}/>
+        <EditorComponent/>
       </div>
     )
   }
 }
-
-// when App component is loaded successfully the following will be called
-
-// eslint-disable-next-line no-undef
-componentDidMount = () => {
-  firebase
-  .firestore()
-  .collection('notes')
-  .onSnapshot(serverUpdate => {
-    const notes = serverUpdate.docs.map(_doc => {
-      const data = _doc.data();
-      data['id'] = _doc.id;
-      return data;
-    });
-    console.log(notes)
-    this.setState({notes: notes})
-  });
-}
-export default App;
+  export default App;
+  
