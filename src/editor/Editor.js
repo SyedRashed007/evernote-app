@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactQuill from 'react-quill'
 import debounce from '../helpers';
-// import BorderColorIcon from '@material-ui/icons/BorderColor';
+import BorderColorIcon from '@material-ui/icons/BorderColor';
 import { withStyles } from '@material-ui/core/styles';
-import styles from './Styles'
+import styles from './Styles';
+import screenfull from 'screenfull';
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
 
 class EditorComponent extends React.Component{
     constructor(){
@@ -21,6 +23,11 @@ class EditorComponent extends React.Component{
             title: this.props.selectedNote.title,
             id: this.props.selectedNote.id
         })
+        if (screenfull.isEnabled){
+            screenfull.on('change', () => {
+                console.log("Fullscreen?", screenfull.isFullscreen? 'Yes' : 'No');
+            })
+        }
     }
     // It is called when quill needs to be displayed when selected (life cycle hook)
 
@@ -40,6 +47,14 @@ class EditorComponent extends React.Component{
 
         return(
             <div className={classes.editorContainer}>
+            <BorderColorIcon className={classes.editIcon}/>
+            <input 
+                className={classes.titleInput}
+                placeholder="Note Title..."
+                value={this.state.title ? this.state.title : ''}
+                onChange={(e) => this.updateTitle(e.target.value)}
+                />
+                < FullscreenIcon className={classes.expandIcon} onClick={this.toggleFullScreen}/>
                 <ReactQuill 
                     value={this.state.text} 
                     onChange={this.updateBody}>
@@ -51,12 +66,21 @@ class EditorComponent extends React.Component{
         await this.setState({text: val});
         this.update()
     }
+    updateTitle = async (txt) => {
+        await this.setState({ title: txt });
+        this.update()
+    }
     update = debounce(()=>{
         this.props.noteUpdate(this.state.id, {
             title: this.state.title,
             body: this.state.text
         })
     }, 1500);
+    toggleFullScreen = () => {
+        if (screenfull.isEnabled){
+            screenfull.toggle();
+        }
+    }
 }
 
 export default withStyles(styles)(EditorComponent)

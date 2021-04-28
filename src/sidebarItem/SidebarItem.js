@@ -38,7 +38,7 @@ class SidebarItemComponent extends React.Component{
     deleteNote = (note) => {
         if(
             window.confirm(`Do you want to delete: ${note.title}`)){
-                this.props.deleteNote();
+                this.props.deleteNote(note);
             }
     }
 }

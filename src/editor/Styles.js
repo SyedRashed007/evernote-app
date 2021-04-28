@@ -5,7 +5,7 @@ const styles = theme => ({
     position: 'absolute',
     left: '0',
     width: '300px',
-    boxShadow: '0px 0px 2px black'
+    boxShadow: '0px 0px 2px white'
   },
   titleInput: {
     height: '50px',
@@ -14,7 +14,7 @@ const styles = theme => ({
     padding: '5px',
     fontSize: '24px',
     width: 'calc(100% - 300px)',
-    backgroundColor: '#29487d',
+    backgroundColor: '#353434',
     color: 'white',
     paddingLeft: '50px'
   },
@@ -29,6 +29,14 @@ const styles = theme => ({
   editorContainer: {
     height: '100%',
     boxSizing: 'border-box'
+  },
+  expandIcon: {
+    fontSize: "2rem !important",
+    cursor: "pointer",
+    marginRight: "1rem",
+    display: 'flex',
+    position: 'absolute',
+    right: '0'
   }
 });
 
