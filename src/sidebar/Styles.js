@@ -43,6 +43,7 @@ const styles = theme => ({
     outline: 'none',
     border: 'none',
     paddingLeft: '5px',
+    backgroundColor: '#f9f2f2',
     '&:focus': {
       outline: '2px solid #afa5a5'
     }
