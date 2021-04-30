@@ -2,8 +2,7 @@ import React from 'react';
 import ReactQuill from 'react-quill'
 import debounce from '../helpers';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
-import { withStyles } from '@material-ui/core/styles';
-import styles from './Styles';
+import './Style.css'
 import screenfull from 'screenfull';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
 
@@ -43,18 +42,16 @@ class EditorComponent extends React.Component{
 
     render(){
 
-        const { classes } = this.props;
-
         return(
-            <div className={classes.editorContainer}>
-            <BorderColorIcon className={classes.editIcon}/>
+            <div className="editorContainer">
+            <BorderColorIcon className='editIcon'/>
             <input 
-                className={classes.titleInput}
+                className='titleInput'
                 placeholder="Note Title..."
                 value={this.state.title ? this.state.title : ''}
                 onChange={(e) => this.updateTitle(e.target.value)}
                 />
-                < FullscreenIcon className={classes.expandIcon} onClick={this.toggleFullScreen}/>
+                <FullscreenIcon className="expandIcon" onClick={this.toggleFullScreen}/>
                 <ReactQuill 
                     value={this.state.text} 
                     onChange={this.updateBody}>
@@ -83,4 +80,4 @@ class EditorComponent extends React.Component{
     }
 }
 
-export default withStyles(styles)(EditorComponent)
+export default EditorComponent
