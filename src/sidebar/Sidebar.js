@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './Styles'
+import './Style.css'
 import List from '@material-ui/core/List';
 import { Divider, Button } from '@material-ui/core';
 import SidebarItemComponent from '../sidebarItem/SidebarItem'
@@ -19,7 +20,7 @@ class SidebarComponent extends React.Component{
         
         if(notes){
             return(
-            <div className={classes.sidebarContainer}>
+            <div className='sidebarContainer'>
                 <Button onClick={this.newNoteBtnClick} className={classes.newNoteBtn}>{this.state.addingNote ? "Cancel" : "New Note"}</Button>
                 {
                     this.state.addingNote ? 
