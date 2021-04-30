@@ -27,15 +27,6 @@ const styles = theme => ({
       backgroundColor: '#afa5a5'
     }
   },
-  sidebarContainer: {
-    marginTop: '0px',
-    width: '300px',
-    height: '100%',
-    boxSizing: 'border-box',
-    float: 'left',
-    overflowY: 'scroll',
-    overflowX: 'hidden'
-  },
   newNoteInput: {
     width: '100%',
     margin: '0px',
