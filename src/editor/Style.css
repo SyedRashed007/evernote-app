@@ -1,12 +1,12 @@
 .editorContainer {
   height: 100vh;
   box-sizing: border-box;
+  width: 135%;
 }
 .expandIcon {
   font-size: 2rem !important;
   cursor: pointer;
   margin-right: 0rem;
-  padding: 8px;
   display: flex;
   position: absolute;
   right: 0;
@@ -33,16 +33,17 @@
 
 @media (max-width: 500px) {
   .expandIcon {
+    font-size: 1.5rem !important;
     display: flex;
     position: sticky;
-    right: 0;
+    right: 5px;
   }
   .editorContainer {
     height: 100vh;
-    width: 113vw;
+    width: 140vw;
   }
   .editIcon {
-    left: 275px;
+    left: 163px;
     width: 5;
     height: 5;
   }
